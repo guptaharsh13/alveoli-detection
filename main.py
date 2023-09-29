@@ -12,12 +12,19 @@ from PyQt5.QtGui import QMovie
 
 from gtts import gTTS
 import os
+import pygame
 
 def speak(content):
     myobj = gTTS(text=content, lang="en", slow=False)
     myobj.save("temp.mp3")
-    os.system("ffplay temp.mp3")
-    os.system("rm temp.mp3")
+    
+    pygame.mixer.init()
+    pygame.mixer.music.load("temp.mp3")
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)
+    
+    os.remove("temp.mp3")
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
