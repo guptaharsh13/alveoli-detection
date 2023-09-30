@@ -12,12 +12,19 @@ from PyQt5.QtGui import QMovie
 
 from gtts import gTTS
 import os
+import pygame
 
 def speak(content):
     myobj = gTTS(text=content, lang="en", slow=False)
     myobj.save("temp.mp3")
-    os.system("ffplay temp.mp3")
-    os.system("rm temp.mp3")
+    
+    pygame.mixer.init()
+    pygame.mixer.music.load("temp.mp3")
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)
+    
+    os.remove("temp.mp3")
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -90,9 +97,9 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "ALVEOLI Detection Apps"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Pneumonia Detection App"))
         self.label.setToolTip(_translate("MainWindow", "<html><head/><body><p><img src=\":/newPrefix/picture.gif\"/></p></body></html>"))
-        self.label_2.setText(_translate("MainWindow", "Chest X_ray ALVEOLI Detection"))
+        self.label_2.setText(_translate("MainWindow", "Chest X_ray Pneumonia Detection"))
         self.pushButton.setText(_translate("MainWindow", "Upload Image"))
         self.pushButton_2.setText(_translate("MainWindow", "Prediction"))
     def upload_image(self):
@@ -115,8 +122,8 @@ class Ui_MainWindow(object):
             print("Result is Normal")
             speak("Result is Normal")
         else:
-            print("Affected By ALVEOLI INFECTION")
-            speak("Affected By ALVEOLI INFECTION")
+            print("Affected By Pneumonia INFECTION")
+            speak("Affected By Pneumonia INFECTION")
 
 
 if __name__ == "__main__":
