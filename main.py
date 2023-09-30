@@ -97,9 +97,9 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "ALVEOLI Detection Apps"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Pneumonia Detection App"))
         self.label.setToolTip(_translate("MainWindow", "<html><head/><body><p><img src=\":/newPrefix/picture.gif\"/></p></body></html>"))
-        self.label_2.setText(_translate("MainWindow", "Chest X_ray ALVEOLI Detection"))
+        self.label_2.setText(_translate("MainWindow", "Chest X_ray Pneumonia Detection"))
         self.pushButton.setText(_translate("MainWindow", "Upload Image"))
         self.pushButton_2.setText(_translate("MainWindow", "Prediction"))
     def upload_image(self):
@@ -122,8 +122,8 @@ class Ui_MainWindow(object):
             print("Result is Normal")
             speak("Result is Normal")
         else:
-            print("Affected By ALVEOLI INFECTION")
-            speak("Affected By ALVEOLI INFECTION")
+            print("Affected By Pneumonia INFECTION")
+            speak("Affected By Pneumonia INFECTION")
 
 
 if __name__ == "__main__":
